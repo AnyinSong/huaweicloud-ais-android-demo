@@ -82,7 +82,7 @@ public class ClientUtils {
 
     public static String getBase64Str(String filePath) throws IOException {
         File file = new File(filePath);
-        if (file.length() >= Integer.MAX_VALUE - 8) {
+        if (file.length() >= MAX_ARRAY_SIZE) {
             throw new IllegalArgumentException(filePath + " is too large!");
         }
         byte[] fileData = new byte[(int) file.length()];

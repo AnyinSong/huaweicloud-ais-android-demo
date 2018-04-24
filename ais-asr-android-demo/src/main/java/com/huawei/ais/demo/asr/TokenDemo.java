@@ -53,7 +53,7 @@ public class TokenDemo {
                     ClientUtils.getIamEndpoint() + tokenUri,
                     ClientUtils.getAisEndpoint() + serviceUri,
                     entity);
-            LOGGER.info("result:" + asrResult);
+            LOGGER.info(asrResult);
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
@@ -61,7 +61,8 @@ public class TokenDemo {
         }
     }
 
-    private static String callASRService(CloseableHttpClient httpClient, String tokenUrl, String serviceUrl, HttpEntity asrSentenceEntity)
+    private static String callASRService(CloseableHttpClient httpClient, String tokenUrl, String serviceUrl,
+                                         HttpEntity asrSentenceEntity)
             throws IOException {
         //获取token
         String token;
@@ -70,23 +71,24 @@ public class TokenDemo {
         if (HttpDataUtils.isOKResponded(tokenRes)) {
             token = tokenRes.getHeaders("X-Subject-Token")[0].getValue();
         } else {
-            LOGGER.error("fail to get token.\n");
-            LOGGER.error(HttpDataUtils.requestToString(tokenReq));
-            LOGGER.error(HttpDataUtils.responseToString(tokenRes));
+            LOGGER.error("fail to get token.");
+            LOGGER.error("request:" + HttpDataUtils.requestToString(tokenReq));
+            LOGGER.error("response:" + HttpDataUtils.responseToString(tokenRes));
             return null;
         }
 
         //调用服务
         HttpRequestBase asrSentenceReq = buildASRSentenceRequest(serviceUrl, token, asrSentenceEntity);
+
         HttpResponse asrSentenceRes = httpClient.execute(asrSentenceReq);
 
         if (HttpDataUtils.isOKResponded(asrSentenceRes)) {
             ASRRes asrRes = HttpDataUtils.getResponseObject(asrSentenceRes, ASRRes.class);
-            // LOGGER.info(ResponseProcessUtils.getPrettyJsonString(asrRes));
+            //LOGGER.info("response object:" + HttpDataUtils.ObjectToPrettyJsonString(asrRes));
             return asrRes.getResult().getWords();
         } else {
-            LOGGER.error(HttpDataUtils.requestToString(asrSentenceReq));
-            return HttpDataUtils.responseToString(asrSentenceRes);
+            LOGGER.error("request:" + HttpDataUtils.requestToString(asrSentenceReq));
+            return "response:" + HttpDataUtils.responseToString(asrSentenceRes);
         }
     }
 

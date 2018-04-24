@@ -41,7 +41,7 @@ public class AkskDemo {
         try {
             HttpEntity entity = buildASRSentenceEntity(audioFilePath, ENCODE_TYPE.WAV, SAMPLE_RATE.RATE_8K);
             String asrResult = callASRService(aisAkskClient, serviceUri, entity);
-            LOGGER.info("result:" + asrResult);
+            LOGGER.info(asrResult);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -51,15 +51,16 @@ public class AkskDemo {
 
     private static String callASRService(AisAkskClient serviceClient, String serviceUri, HttpEntity asrSentenceEntity)
             throws IOException {
+
         HttpResponse asrSentenceRes = serviceClient.post(serviceUri, asrSentenceEntity);
 
         if (HttpDataUtils.isOKResponded(asrSentenceRes)) {
             ASRRes asrRes = HttpDataUtils.getResponseObject(asrSentenceRes, ASRRes.class);
-            //LOGGER.info(ResponseProcessUtils.getPrettyJsonString(asrRes));
+            //LOGGER.info("response object:" + HttpDataUtils.ObjectToPrettyJsonString(asrRes));
             return asrRes.getResult().getWords();
         } else {
-            LOGGER.error("request body:\n" + HttpDataUtils.entityToPrettyString(asrSentenceEntity));
-            return HttpDataUtils.responseToString(asrSentenceRes);
+            LOGGER.error("request body:" + HttpDataUtils.entityToPrettyString(asrSentenceEntity));
+            return "response:" + HttpDataUtils.responseToString(asrSentenceRes);
         }
     }
 

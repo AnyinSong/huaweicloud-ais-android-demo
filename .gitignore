@@ -1,5 +1,13 @@
-/target/
-/.settings/
-.project
+## .gitignore for intellij and eclipse
+*.iml
+.idea/
+out/
+build/
+
 .classpath
-.iml
+.project
+.settings
+
+
+# .gitignore for maven 
+target/
