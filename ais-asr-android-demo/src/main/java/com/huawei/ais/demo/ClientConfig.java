@@ -7,7 +7,7 @@ public class ClientConfig {
 
     /*云服务入口信息，无论使用ak/sk方式访问还是token方式访问都需要配置ais服务端点信息和区域信息*/
     private String region = "cn-north-1";   //可从http://developer.huaweicloud.com/dev/endpoint 查询
-    private String aisEndpoint = "https://ais.cn-north-1.myhwclouds.com"; //查询方式和endPoint相同
+    private String aisEndpoint = "https://ais.cn-north-1.myhuaweicloud.com"; //查询方式和endPoint相同
 
     /*如果使用ak/sk方式访问服务则需要配置ak和sk*/
     private String ak = "*****";
