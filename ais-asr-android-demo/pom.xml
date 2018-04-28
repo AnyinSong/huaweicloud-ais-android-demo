@@ -17,9 +17,9 @@
         <dependency>
             <groupId>com.huawei.ais</groupId>
             <artifactId>ais-android-client</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ais-android-client-1.0.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/ais-android-client-1.0.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>

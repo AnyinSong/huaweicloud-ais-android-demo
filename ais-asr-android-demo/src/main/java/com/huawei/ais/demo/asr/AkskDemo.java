@@ -28,11 +28,11 @@ public class AkskDemo {
 
         //1 在ClientConfig中配置了服务入口信息(endpoint, region)
 
-        //2 初始化服务调用客户端
-        AisAkskClient aisAkskClient = ClientUtils.getAisAkskClient(ClientUtils.getAuthInfo());
+        //2 初始化服务调用客户端,参数依次为连接超时和等到响应超时(ms)
+        AisAkskClient aisAkskClient = ClientUtils.getAisAkskClient(ClientUtils.getAuthInfo(), 1000, 6000);
 
         //2.1 如果要通过代理访问服务请先在ClientConfig中配置代理服务器信息
-        //AisAkskClient aisAkskClient = ClientUtils.getAisAkskClient(ClientUtils.getAuthInfo(), ClientUtils.getProxyHost());
+        //AisAkskClient aisAkskClient = ClientUtils.getAisAkskClient(ClientUtils.getAuthInfo(), ClientUtils.getProxyHost(), 1000, 6000);
 
         //3 指定要识别的音频文件（短语音识别支持小于1分钟的音频，Base64编码后不超过4M，格式支持wav， 采样率支持8k，16k，单声道）
         String audioFilePath = "data/sentence.wav";
@@ -50,7 +50,7 @@ public class AkskDemo {
     }
 
     private static String callASRService(AisAkskClient serviceClient, String serviceUri, HttpEntity asrSentenceEntity)
-            throws IOException {
+            throws Exception {
 
         HttpResponse asrSentenceRes = serviceClient.post(serviceUri, asrSentenceEntity);
 

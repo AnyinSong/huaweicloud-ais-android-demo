@@ -42,16 +42,17 @@ public class ClientUtils {
         return CONFIG.getIamEndpoint();
     }
 
-    public static synchronized AisAkskClient getAisAkskClient(AuthInfo authInfo) {
+    public static synchronized AisAkskClient getAisAkskClient(AuthInfo authInfo, int connectionTimeout, int socketTimeout) {
         if (client == null) {
-            client = new AisAkskClient(authInfo);
+            client = new AisAkskClient(authInfo, connectionTimeout, socketTimeout);
         }
         return client;
     }
 
-    public static synchronized AisAkskClient getAisAkskClient(AuthInfo authInfo, ProxyHostInfo proxyHostInfo) {
+    public static synchronized AisAkskClient getAisAkskClient(AuthInfo authInfo, ProxyHostInfo proxyHostInfo,
+                                                              int connectionTimeout, int socketTimeout) {
         if (clientWithProxy == null) {
-            clientWithProxy = new AisAkskClientWithProxy(authInfo, proxyHostInfo);
+            clientWithProxy = new AisAkskClientWithProxy(authInfo, proxyHostInfo, connectionTimeout, socketTimeout);
         }
         return clientWithProxy;
     }

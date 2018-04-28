@@ -37,11 +37,11 @@ public class TokenDemo {
 
         //1 在ClientConfig中配置了服务入口信息(endpoint, region)和token方式所需的username, password等信息
 
-        //2 初始化服务调用客户端
-        CloseableHttpClient httpClient = HttpClientUtils.acceptsUntrustedCertsHttpClient();
+        //2 初始化服务调用客户端,参数依次为连接超时和等到响应超时(ms)
+        CloseableHttpClient httpClient = HttpClientUtils.acceptsUntrustedCertsHttpClient(1000, 6000);
 
         //2.1 如果要通过代理访问服务请先在ClientConfig中配置代理服务器信息
-        //CloseableHttpClient httpClient = HttpClientUtils.acceptsUntrustedCertsHttpClient(ClientUtils.getProxyHost());
+        //CloseableHttpClient httpClient = HttpClientUtils.acceptsUntrustedCertsHttpClient(ClientUtils.getProxyHost(), 1000, 6000);
 
         //3 指定要识别的音频文件（短语音识别支持小于1分钟的音频，Base64编码后不超过4M，格式支持wav， 采样率支持8k，16k，单声道）
         String audioFilePath = "data/sentence.wav";
