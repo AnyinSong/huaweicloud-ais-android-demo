@@ -2,8 +2,8 @@ package com.huawei.ais.demo.asr;
 
 import com.huawei.ais.demo.ClientUtils;
 import com.huawei.ais.demo.asr.model.ASRReq;
-import com.huawei.ais.demo.asr.model.ENCODE_TYPE;
-import com.huawei.ais.demo.asr.model.SAMPLE_RATE;
+import com.huawei.ais.demo.asr.model.EncodeType;
+import com.huawei.ais.demo.asr.model.SampleRate;
 import com.huawei.ais.sdk.util.HttpDataUtils;
 import com.huawei.ais.demo.asr.model.ASRRes;
 import com.huawei.ais.sdk.AisAkskClient;
@@ -39,7 +39,7 @@ public class AkskDemo {
 
         //4 发起服务调用
         try {
-            HttpEntity entity = buildASRSentenceEntity(audioFilePath, ENCODE_TYPE.WAV, SAMPLE_RATE.RATE_8K);
+            HttpEntity entity = buildASRSentenceEntity(audioFilePath, EncodeType.WAV, SampleRate.RATE_8K);
             String asrResult = callASRService(aisAkskClient, serviceUri, entity);
             LOGGER.info(asrResult);
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class AkskDemo {
         }
     }
 
-    private static HttpEntity buildASRSentenceEntity(String filePath, ENCODE_TYPE encodeType, SAMPLE_RATE sampleRate)
+    private static HttpEntity buildASRSentenceEntity(String filePath, EncodeType encodeType, SampleRate sampleRate)
             throws IOException {
         String fileBase64Str = ClientUtils.getBase64Str(filePath);
 

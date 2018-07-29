@@ -7,9 +7,9 @@ public class ASRReq
     @JsonProperty("data")
     String data;
     @JsonProperty("encode_type")
-    ENCODE_TYPE encodeType;
+    EncodeType encodeType;
     @JsonProperty("sample_rate")
-    SAMPLE_RATE sampleRate;
+    SampleRate sampleRate;
 
     public String getData() {
         return data;
@@ -19,19 +19,19 @@ public class ASRReq
         this.data = data;
     }
 
-    public ENCODE_TYPE getEncodeType() {
+    public EncodeType getEncodeType() {
         return encodeType;
     }
 
-    public void setEncodeType(ENCODE_TYPE encodeType) {
+    public void setEncodeType(EncodeType encodeType) {
         this.encodeType = encodeType;
     }
 
-    public SAMPLE_RATE getSampleRate() {
+    public SampleRate getSampleRate() {
         return sampleRate;
     }
 
-    public void setSampleRate(SAMPLE_RATE sampleRate) {
+    public void setSampleRate(SampleRate sampleRate) {
         this.sampleRate = sampleRate;
     }
 }
